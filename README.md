@@ -1,3 +1,5 @@
+# Warning ⚠️
+***THERE IS 0 ANTI-CHEAT PROTECTIONS IN THIS PROJECT, PLEASE USE A BASE DRIVER THAT IS ALREADY UNDETECTED, THIS IS JUST A CONCEPT PROJECT.***
 # NMI Execution Exploit
 This is documentation on my NMI Execution Exploit for Runtime Use, (NMI Callback Blocker) that I use for BE & EAC, I will not be releasing source code on this because I do not want to get auto blocked or dtc by BE or EAC.
 
