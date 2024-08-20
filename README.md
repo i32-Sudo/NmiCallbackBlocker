@@ -50,7 +50,7 @@ extern "C" NTSTATUS PreventNMIExecution() {
 }
 ```
 # EAC NMI Walker
-```cppp
+```cpp
 BOOLEAN EAC::NmiCallbackRoutine( PVOID Context, BOOLEAN Handled )
 {
 	auto* callback_context = reinterpret_cast< EAC_NMI_CALLBACK_CONTEXT* >( Context );
