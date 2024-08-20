@@ -49,6 +49,35 @@ extern "C" NTSTATUS PreventNMIExecution() {
 	return STATUS_SUCCESS;
 }
 ```
+# EAC NMI Walker
+```cppp
+BOOLEAN EAC::NmiCallbackRoutine( PVOID Context, BOOLEAN Handled )
+{
+	auto* callback_context = reinterpret_cast< EAC_NMI_CALLBACK_CONTEXT* >( Context );
+	
+	auto* data = &callback_context->data_blocks[ KeGetCurrentProcessorNumberEx( NULL ) ];
+	
+	if ( !data->gdtr_value.base )
+	{
+		const auto* current_thread = PsGetCurrentThread();
+		__sgdt( &data->gdtr_value );
+		data->thread_id = PsGetCurrentThreadId();
+		data->thread_process_id = PsGetThreadProcessId( current_thread );
+		data->thread_SystemCallNumber = current_thread->SystemCallNumber;
+		data->thread_StartAddress = current_thread->StartAddress;
+		data->thread_StackLimit = current_thread->StackLimit;
+		data->thread_StackBase = current_thread->StackBase;
+		data->pcr_HalReserved_8 = KeGetPcr()->HalReserved[ 8 ];
+		data->cr3_value = __readcr3();
+		data->stack_copy_number_of_bytes = 1024;
+		std::memcpy( &data->stack_copy, _AddressOfReturnAddress(), 1024 );
+		_InterlockedIncrement( &callback_context->counter );
+	}
+	
+	return TRUE;
+}
+// Not My Code
+```
 # Notes
 You will need to add & use (x) as this is detected by default for Tracing & Trace Calls (If using standard NtLoad or standard Service Running).
 - Udman Spoof Calls to avoid tracing
