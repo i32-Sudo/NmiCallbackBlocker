@@ -1,9 +1,5 @@
 # Warning ⚠️
 ***THERE IS 0 ANTI-CHEAT PROTECTIONS IN THIS PROJECT, PLEASE USE A BASE DRIVER THAT IS ALREADY UNDETECTED, THIS IS JUST A CONCEPT PROJECT.***
-# NMI Execution Exploit
-This is documentation on my NMI Execution Exploit for Runtime Use, (NMI Callback Blocker) that I use for BE & EAC, I will not be releasing source code on this because I do not want to get auto blocked or dtc by BE or EAC.
-
-You can use my BEKernelDriver's Physical Mem functions to execute this exploit and do everything but for now there will be no dedicate source code on this concept.
 # Explenation
 The exploit involves scanning for specific signatures in kernel memory, and modifying processor affinity masks to prevent NMIs from executing. This approach employs techniques to avoid detection and tracing.
 # Function
